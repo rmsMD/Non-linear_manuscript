@@ -17,8 +17,6 @@ library(officer)
 library(cowplot)
 ```
 
-Citation: TBC
-
 # Data loading and set-up
 
 Load in simulated data from the simulate_data.R file. This data was simulated for this manuscript.
