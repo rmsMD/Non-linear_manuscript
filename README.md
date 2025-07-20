@@ -23,15 +23,8 @@ The case study demonstrates:
 - **Data Simulation**: Creating a dataset with known linear (age) and U-shaped (BMI) relationships
 - **Model Fitting**: Using restricted cubic splines with logistic regression
 - **Model Evaluation**: Testing for non-linearity and model diagnostics
-- **Visualization**: Creating publication-ready plots showing odds ratios and predicted probabilities
+- **Visualization**: Creating publication-ready plots
 - **Table Generation**: Producing formatted tables for manuscript submission
-
-## Outputs
-
-The scripts generate:
-- **Tables**: Model summaries in Word document format
-- **Figures**: Multi-panel plots showing relationships (PDF/JPG)
-- **Diagnostics**: Model fit statistics and non-linearity tests
 
 ## Citation
 
