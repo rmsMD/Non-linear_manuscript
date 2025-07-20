@@ -1,4 +1,4 @@
-
+# set seed for reproducibility
 set.seed(124)
 
 # Simulate data

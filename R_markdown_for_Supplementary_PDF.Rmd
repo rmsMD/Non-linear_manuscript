@@ -23,9 +23,9 @@ Citation: TBC
 # Data loading and set-up
 
 Load in simulated data from the simulate_data.R file. This data was simulated for this manuscript.
-The true relationship is that age has a linear relationship and BMI has a U-shapred relationship.
+The true relationship is that age has a linear relationship and BMI has a U-shaped relationship.
 
-We will assume that data has been appropriately examined, plotted and cleaned
+We will assume that the data has been appropriately examined, plotted and cleaned.
 
 ```{r}
 # load in the simulated data
@@ -80,7 +80,7 @@ ggrmsMD(fit, data, combined = TRUE, lrm_prob = TRUE)
 # To assess whether rcs variables are significantly non-linear use anova
 # for each RCS term, a p-value for "Nonlinear" is given
 anova(fit, test = "LR")
-# As expected, BMI, but not age, is significalty non-linear
+# As expected, BMI, but not age, is significantly non-linear
 ```
 
 # Publication ready outputs using rmsMD
@@ -126,7 +126,7 @@ Using ggrmsMD() from `rmsMD` to make Figure 2 in the accompanying manuscript.
 # effect line (OR = 1) to give a visual cue for which side represents inferior outcome.
 plots_OR <- ggrmsMD(fit, data, combined = FALSE,
                     shade_inferior = "higher",
-                    ylab = "Occurence of surgical complications \n(adjusted OR)",
+                    ylab = "Occurrence of surgical complications \n(adjusted OR)",
                     xlabs = list(age = "Age (years)", bmi = "BMI (kg/m²)"),
                     log_y = TRUE,
                     ylim = c(0.25, 4)

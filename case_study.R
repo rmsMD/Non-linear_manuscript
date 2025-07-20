@@ -33,7 +33,7 @@ fit <- lrm(majorcomplication ~ rcs(age, 3) + rcs(bmi, 3) + sex + smoking,
                x = TRUE, y = TRUE) 
 
 # note, x = TRUE, y = TRUE is recommended for lrm and cph models to allow subsequent
-# LR tests to be performed
+# Likelihood Ratio (LR) tests to be performed
 
 # Check the model fit and diagnostics including number of observations and events
 # Note the spline term coefficients (age, age', bmi, bmi') are difficult to interpret
@@ -55,8 +55,9 @@ ggrmsMD(fit, data, combined = TRUE, lrm_prob = TRUE)
 
 # To assess whether rcs variables are significantly non-linear use anova
 # for each RCS term, a p-value for "Nonlinear" is given
+# test = "LR" is used to perform a Likelihood Ratio test
 anova(fit, test = "LR")
-# As expected, BMI, but not age, is significalty non-linear
+# As expected, BMI, but not age, is significantly non-linear
 
 
 # ---- Publication ready tables ----
@@ -98,7 +99,7 @@ print(doc, target = "Results_of_model_with_linear_assumption.docx")
 # effect line (OR = 1) to give a visual cue for which side represents inferior outcome.
 plots_OR <- ggrmsMD(fit, data, combined = FALSE,
                     shade_inferior = "higher",
-                    ylab = "Occurence of surgical complications \n(adjusted OR)",
+                    ylab = "Occurrence of surgical complications \n(adjusted OR)",
                     xlabs = list(age = "Age (years)", bmi = "BMI (kg/m²)"),
                     log_y = TRUE,
                     ylim = c(0.25, 4)
