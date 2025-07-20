@@ -15,7 +15,6 @@ library(table1)
 library(flextable)
 library(officer)
 library(cowplot)
-
 ```
 
 Citation: TBC
@@ -35,7 +34,6 @@ source("simulate_data.R")
 # when using the rms package
 dd <- datadist(data)
 options(datadist = "dd")
-
 ```
 
 ## Data summary and demographics table
@@ -43,7 +41,6 @@ options(datadist = "dd")
 This is using table1() from the `table1` package to give a summary of the simulated data.
 
 ```{r}
-
 table1(~age + bmi + sex + smoking + as.factor(majorcomplication), data = data)
 ```
 
@@ -51,13 +48,12 @@ table1(~age + bmi + sex + smoking + as.factor(majorcomplication), data = data)
 
 ```{r fig.width=8, fig.height=4}
 # Fit logistic regression model using restricted cubic splines
-
 fit <- lrm(majorcomplication ~ rcs(age, 3) + rcs(bmi, 3) + sex + smoking,
                data = data,
                x = TRUE, y = TRUE) 
 
 # note, x = TRUE, y = TRUE is recommended for lrm and cph models to allow subsequent
-# LR tests to be performed
+# Likelihood Ratio (LR) tests to be performed
 
 # Check the model fit and diagnostics including number of observations and events
 # Note the spline term coefficients (age, age', bmi, bmi') are difficult to interpret
@@ -79,6 +75,7 @@ ggrmsMD(fit, data, combined = TRUE, lrm_prob = TRUE)
 
 # To assess whether rcs variables are significantly non-linear use anova
 # for each RCS term, a p-value for "Nonlinear" is given
+# test = "LR" is used to perform a Likelihood Ratio test
 anova(fit, test = "LR")
 # As expected, BMI, but not age, is significantly non-linear
 ```
@@ -92,7 +89,6 @@ modelsummary_rms() to word documents. These are used in Table 2 of the accompany
 manuscript.
 
 ```{r}
-
 # modelsummary_rms will output a dataframe. first make this into a flextable
 results <- modelsummary_rms(fit)
 results_flextable <- flextable(results)
@@ -123,7 +119,8 @@ Using ggrmsMD() from `rmsMD` to make Figure 2 in the accompanying manuscript.
 ```{r fig.width=8, fig.height=8}
 # plot adjusted odds ratio. note the y axis is plotted here on a log-scale rather than
 # a linear scale. The shade_inferior argument is used to shade either side of the no
-# effect line (OR = 1) to give a visual cue for which side represents inferior outcome.
+# effect line (OR = 1) to give a visual cue for which side represents inferior outcome
+# note that by setting combined = FALSE, the ouput is a list of plots, one for each RCS term
 plots_OR <- ggrmsMD(fit, data, combined = FALSE,
                     shade_inferior = "higher",
                     ylab = "Occurrence of surgical complications \n(adjusted OR)",
@@ -154,7 +151,5 @@ ggsave(file = "Case_study_RCS_plot.pdf", plot = plots, width = 8, height = 8)
 
 # to save as jpg
 ggsave(file = "Case_study_RCS_plot.jpg", plot = plots, width = 8, height = 8)
-
-
 ```
 

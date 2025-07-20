@@ -73,9 +73,9 @@ results <- modelsummary_rms(fit)
 results_flextable <- flextable(results)
 
 # output to a word document
-doc <- read_docx()
-doc <- body_add_flextable(doc, results_flextable)
-print(doc, target = "Results_of_main_model.docx")
+doc <- read_docx() # set up word doc
+doc <- body_add_flextable(doc, results_flextable) # add results
+print(doc, target = "Results_of_main_model.docx") 
 
 # creating a model which does not use RCS terms to use for comparison
 # note this model assumes linear relationships, and incorrectly finds no association
@@ -97,6 +97,7 @@ print(doc, target = "Results_of_model_with_linear_assumption.docx")
 # plot adjusted odds ratio. note the y axis is plotted here on a log-scale rather than
 # a linear scale. The shade_inferior argument is used to shade either side of the no
 # effect line (OR = 1) to give a visual cue for which side represents inferior outcome.
+# note that by setting combined = FALSE, the ouput is a list of plots, one for each RCS term
 plots_OR <- ggrmsMD(fit, data, combined = FALSE,
                     shade_inferior = "higher",
                     ylab = "Occurrence of surgical complications \n(adjusted OR)",
