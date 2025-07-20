@@ -1,6 +1,6 @@
 ---
 title: "R markdown for Supplementary PDF"
-author: "Samuel Tingle"
+author: "Samuel Tingle and Georgios Kourounis"
 date: "`r Sys.Date()`"
 output: pdf_document
 ---
